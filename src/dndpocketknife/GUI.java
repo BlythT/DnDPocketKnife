@@ -12,7 +12,7 @@ package dndpocketknife;
 public class GUI extends javax.swing.JFrame {
     private final dCustom D20 = new dCustom(1,20);
     private final dCustom D12 = new dCustom(1,12);
-    private final dCustom D00 = new dCustom(0,9,10);
+    private final dCustom D00 = new dCustom("d00",0,9,10);
     private final dCustom D10 = new dCustom(1,10);
     private final dCustom D8 = new dCustom(1,8);
     private final dCustom D6 = new dCustom(1,6);
@@ -229,40 +229,34 @@ public class GUI extends javax.swing.JFrame {
 
     private void diceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diceButtonActionPerformed
         javax.swing.JButton source = (javax.swing.JButton) evt.getSource();
+        Die dice = null;
         if(source == d4Button){
-            D4.roll();
-            rollResultsPane.append("\r\n"+D4.toString());
+            dice = D4;
         }
         else if(source == d6Button){
-            D6.roll();
-            rollResultsPane.append("\r\n"+D6.toString());
+            dice = D6;
         }
         else if(source == d8Button){
-            D8.roll();
-            rollResultsPane.append("\r\n"+D8.toString());
+            dice = D8;
         }
         else if(source == d10Button){
-            D10.roll();
-            rollResultsPane.append("\r\n"+D10.toString());
+            dice = D10;
         }
         else if(source == d00Button){
-            D00.roll();
-            rollResultsPane.append("\r\n"+D00.toString());
+            dice = D00;
         }
         else if(source == d12Button){
-            D12.roll();
-            rollResultsPane.append("\r\n"+D12.toString());
+            dice = D12;
         }
         else if(source == d20Button){
-            D20.roll();
-            rollResultsPane.append("\r\n"+D20.toString());
+            dice = D20;
         }
         else{
             System.out.println("Error: dice button mismatch");
             throw new IllegalStateException();
         }
-        //dice.roll();
-        //rollResultsPane.append("\r\n"+dice.toString());
+        dice.roll();
+        rollResultsPane.append(dice.toString()+"\r\n");
     }//GEN-LAST:event_diceButtonActionPerformed
 
     /*private void diceButtonActionPerformed(java.awt.event.ActionEvent evt){
