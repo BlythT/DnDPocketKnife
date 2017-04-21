@@ -242,7 +242,7 @@
                             <Property name="text" type="java.lang.String" value="d4"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="d4ButtonActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diceButtonActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="d6Button">
@@ -250,7 +250,7 @@
                             <Property name="text" type="java.lang.String" value="d6"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="d6ButtonActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diceButtonActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="d8Button">
@@ -258,7 +258,7 @@
                             <Property name="text" type="java.lang.String" value="d8"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="d8ButtonActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diceButtonActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="d10Button">
@@ -266,7 +266,7 @@
                             <Property name="text" type="java.lang.String" value="d10"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="d10ButtonActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diceButtonActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="d00Button">
@@ -274,7 +274,7 @@
                             <Property name="text" type="java.lang.String" value="d00"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="d00ButtonActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diceButtonActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="d12Button">
@@ -282,7 +282,7 @@
                             <Property name="text" type="java.lang.String" value="d12"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="d12ButtonActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diceButtonActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="d20Button">
@@ -290,7 +290,7 @@
                             <Property name="text" type="java.lang.String" value="d20"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="d20ButtonActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diceButtonActionPerformed"/>
                           </Events>
                         </Component>
                       </SubComponents>

@@ -18,7 +18,6 @@ public class dCustom implements Die {
     private int min;
     private int max;
     private int multiplier;
-    private static final Random RANDOM = new Random();
     public dCustom(int min, int max){
         this.min = min;
         this.max = max;
@@ -48,5 +47,8 @@ public class dCustom implements Die {
     }
     public void roll(){
         this.value = ThreadLocalRandom.current().nextInt(min, max + 1)*multiplier;
+    }
+    public String toString(){
+        return name + ": " + getValue();
     }
 }

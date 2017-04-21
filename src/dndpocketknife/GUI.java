@@ -137,7 +137,7 @@ public class GUI extends javax.swing.JFrame {
         d4Button.setText("d4");
         d4Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                d4ButtonActionPerformed(evt);
+                diceButtonActionPerformed(evt);
             }
         });
         jPanel8.add(d4Button);
@@ -145,7 +145,7 @@ public class GUI extends javax.swing.JFrame {
         d6Button.setText("d6");
         d6Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                d6ButtonActionPerformed(evt);
+                diceButtonActionPerformed(evt);
             }
         });
         jPanel8.add(d6Button);
@@ -153,7 +153,7 @@ public class GUI extends javax.swing.JFrame {
         d8Button.setText("d8");
         d8Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                d8ButtonActionPerformed(evt);
+                diceButtonActionPerformed(evt);
             }
         });
         jPanel8.add(d8Button);
@@ -161,7 +161,7 @@ public class GUI extends javax.swing.JFrame {
         d10Button.setText("d10");
         d10Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                d10ButtonActionPerformed(evt);
+                diceButtonActionPerformed(evt);
             }
         });
         jPanel8.add(d10Button);
@@ -169,7 +169,7 @@ public class GUI extends javax.swing.JFrame {
         d00Button.setText("d00");
         d00Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                d00ButtonActionPerformed(evt);
+                diceButtonActionPerformed(evt);
             }
         });
         jPanel8.add(d00Button);
@@ -177,7 +177,7 @@ public class GUI extends javax.swing.JFrame {
         d12Button.setText("d12");
         d12Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                d12ButtonActionPerformed(evt);
+                diceButtonActionPerformed(evt);
             }
         });
         jPanel8.add(d12Button);
@@ -185,7 +185,7 @@ public class GUI extends javax.swing.JFrame {
         d20Button.setText("d20");
         d20Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                d20ButtonActionPerformed(evt);
+                diceButtonActionPerformed(evt);
             }
         });
         jPanel8.add(d20Button);
@@ -227,46 +227,49 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_removeButtonActionPerformed
 
-    private void d4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d4ButtonActionPerformed
-        D4.roll();
-        rollResultsPane.append(String.valueOf(D4.getValue())+"\r\n");
-    }//GEN-LAST:event_d4ButtonActionPerformed
+    private void diceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diceButtonActionPerformed
+        javax.swing.JButton source = (javax.swing.JButton) evt.getSource();
+        if(source == d4Button){
+            D4.roll();
+            rollResultsPane.append("\r\n"+D4.toString());
+        }
+        else if(source == d6Button){
+            D6.roll();
+            rollResultsPane.append("\r\n"+D6.toString());
+        }
+        else if(source == d8Button){
+            D8.roll();
+            rollResultsPane.append("\r\n"+D8.toString());
+        }
+        else if(source == d10Button){
+            D10.roll();
+            rollResultsPane.append("\r\n"+D10.toString());
+        }
+        else if(source == d00Button){
+            D00.roll();
+            rollResultsPane.append("\r\n"+D00.toString());
+        }
+        else if(source == d12Button){
+            D12.roll();
+            rollResultsPane.append("\r\n"+D12.toString());
+        }
+        else if(source == d20Button){
+            D20.roll();
+            rollResultsPane.append("\r\n"+D20.toString());
+        }
+        else{
+            System.out.println("Error: dice button mismatch");
+            throw new IllegalStateException();
+        }
+        //dice.roll();
+        //rollResultsPane.append("\r\n"+dice.toString());
+    }//GEN-LAST:event_diceButtonActionPerformed
 
-    private void d6ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d6ButtonActionPerformed
-        D6.roll();
-        rollResultsPane.append(String.valueOf(D6.getValue())+"\r\n");
-    }//GEN-LAST:event_d6ButtonActionPerformed
-
-    private void d8ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d8ButtonActionPerformed
-        D8.roll();
-        rollResultsPane.append(String.valueOf(D8.getValue())+"\r\n");
-    }//GEN-LAST:event_d8ButtonActionPerformed
-
-    private void d10ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d10ButtonActionPerformed
-        D10.roll();
-        rollResultsPane.append(String.valueOf(D10.getValue())+"\r\n");
-    }//GEN-LAST:event_d10ButtonActionPerformed
-
-    private void d00ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d00ButtonActionPerformed
-        D00.roll();
-        rollResultsPane.append(String.valueOf(D00.getValue())+"\r\n");
-    }//GEN-LAST:event_d00ButtonActionPerformed
-
-    private void d12ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d12ButtonActionPerformed
-        D12.roll();
-        rollResultsPane.append(String.valueOf(D12.getValue())+"\r\n");
-    }//GEN-LAST:event_d12ButtonActionPerformed
-
-    private void d20ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d20ButtonActionPerformed
-        D20.roll();
-        rollResultsPane.append(String.valueOf(D20.getValue())+"\r\n");
-    }//GEN-LAST:event_d20ButtonActionPerformed
-
-    private void diceButtonActionPerformed(java.awt.event.ActionEvent evt){
+    /*private void diceButtonActionPerformed(java.awt.event.ActionEvent evt){
         Die dice = (Die) evt.getSource();
         dice.roll();
         rollResultsPane.append(String.valueOf(dice.getValue())+"\r\n");
-    }
+    }*/
     /**
      * @param args the command line arguments
      */
