@@ -13,4 +13,5 @@ public interface Die {
     public void roll();
     public void setValue(int value);
     public int getValue();
+    public String getName();
 }

@@ -5,11 +5,15 @@
  */
 package dndpocketknife;
 
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
+
 /**
  *
  * @author timbl
  */
 public class GUI extends javax.swing.JFrame {
+    //initialising all the preset real world dice using instances of the dCustom class
     private final dCustom D20 = new dCustom(1,20);
     private final dCustom D12 = new dCustom(1,12);
     private final dCustom D00 = new dCustom("d00",0,9,10);
@@ -17,11 +21,19 @@ public class GUI extends javax.swing.JFrame {
     private final dCustom D8 = new dCustom(1,8);
     private final dCustom D6 = new dCustom(1,6);
     private final dCustom D4 = new dCustom(1,4);
+    private DefaultListModel diceListModel;
+    private Die[] data;
     /**
      * Creates new form Test
      */
     public GUI() {
+        data = new Die[]{new dCustom(1,20), new dCustom(1,6), new dCustom("Coin", 0, 1)};
+        diceListModel = new DefaultListModel();
+        for(int i=0; i<data.length; i++){
+            diceListModel.addElement(data[i]);
+        }
         initComponents();
+        diceList.setCellRenderer(new dieCellRenderer());
     }
 
     /**
@@ -32,7 +44,7 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        dicePanel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -42,12 +54,12 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         diceList = new javax.swing.JList<>();
         jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        diceSelectLabel = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         diceSelector = new javax.swing.JComboBox<>();
         diceNumber = new javax.swing.JSpinner();
         jPanel7 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        presetDiceLabel = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         d4Button = new javax.swing.JButton();
         d6Button = new javax.swing.JButton();
@@ -63,8 +75,8 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        dicePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        dicePanel.setLayout(new java.awt.BorderLayout());
 
         jPanel6.setLayout(new java.awt.BorderLayout());
 
@@ -93,11 +105,11 @@ public class GUI extends javax.swing.JFrame {
         rollButton.setText("ROLL");
         jPanel3.add(rollButton, java.awt.BorderLayout.PAGE_END);
 
-        diceList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        diceList.setModel(diceListModel);
+        diceList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        diceList.setToolTipText("");
+        diceList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        diceList.setEnabled(false);
         jScrollPane1.setViewportView(diceList);
 
         jPanel3.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -106,10 +118,10 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Dice Select:");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel5.add(jLabel1, java.awt.BorderLayout.PAGE_START);
+        diceSelectLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        diceSelectLabel.setText("Dice Select:");
+        diceSelectLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.add(diceSelectLabel, java.awt.BorderLayout.PAGE_START);
 
         jPanel10.setLayout(new java.awt.GridLayout(1, 2));
 
@@ -128,9 +140,9 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setText("Preset Dice");
-        jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel7.add(jLabel2, java.awt.BorderLayout.PAGE_START);
+        presetDiceLabel.setText("Preset Dice");
+        presetDiceLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel7.add(presetDiceLabel, java.awt.BorderLayout.PAGE_START);
 
         jPanel8.setLayout(new java.awt.GridLayout(7, 1));
 
@@ -194,7 +206,7 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel6.add(jPanel7, java.awt.BorderLayout.EAST);
 
-        jPanel1.add(jPanel6, java.awt.BorderLayout.EAST);
+        dicePanel.add(jPanel6, java.awt.BorderLayout.EAST);
 
         jPanel9.setPreferredSize(new java.awt.Dimension(300, 375));
         jPanel9.setLayout(new java.awt.BorderLayout());
@@ -205,9 +217,9 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel9.add(scrollPanel, java.awt.BorderLayout.CENTER);
 
-        jPanel1.add(jPanel9, java.awt.BorderLayout.CENTER);
+        dicePanel.add(jPanel9, java.awt.BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("Dice Roller", jPanel1);
+        jTabbedPane1.addTab("Dice Roller", dicePanel);
         jTabbedPane1.addTab("tab2", jPanel2);
 
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
@@ -216,18 +228,19 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void diceSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diceSelectorActionPerformed
-        // TODO add your handling code here:
+        //Each item should correspond to a particular dice, or a custom dice where a dialog opens and requests the relevent parameters
     }//GEN-LAST:event_diceSelectorActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        //Button functionality should add selected dice from diceSelector and add it to diceList
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        // TODO add your handling code here:
+        //Should remove selected diceList item from diceList
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void diceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diceButtonActionPerformed
+        //Based on which button is pressed, selects dice, rolls, and announces name and result to rollResultsPane
         javax.swing.JButton source = (javax.swing.JButton) evt.getSource();
         Die dice = null;
         if(source == d4Button){
@@ -259,11 +272,6 @@ public class GUI extends javax.swing.JFrame {
         rollResultsPane.append(dice.toString()+"\r\n");
     }//GEN-LAST:event_diceButtonActionPerformed
 
-    /*private void diceButtonActionPerformed(java.awt.event.ActionEvent evt){
-        Die dice = (Die) evt.getSource();
-        dice.roll();
-        rollResultsPane.append(String.valueOf(dice.getValue())+"\r\n");
-    }*/
     /**
      * @param args the command line arguments
      */
@@ -309,12 +317,11 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton d4Button;
     private javax.swing.JButton d6Button;
     private javax.swing.JButton d8Button;
-    private javax.swing.JList<String> diceList;
+    private javax.swing.JList<Object> diceList;
     private javax.swing.JSpinner diceNumber;
+    private javax.swing.JPanel dicePanel;
+    private javax.swing.JLabel diceSelectLabel;
     private javax.swing.JComboBox<String> diceSelector;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -326,6 +333,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel presetDiceLabel;
     private javax.swing.JButton removeButton;
     private javax.swing.JButton rollButton;
     private javax.swing.JTextArea rollResultsPane;

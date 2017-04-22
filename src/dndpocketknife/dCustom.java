@@ -25,6 +25,13 @@ public class dCustom implements Die {
         this.name = "d" + max*multiplier;
         roll();
     }
+    public dCustom(String name, int min, int max){
+        this.min = min;
+        this.max = max;
+        this.multiplier = 1;
+        this.name = name;
+        roll();
+    }
     public dCustom(int min, int max, int multiplier){
         this.min = min;
         this.max = max;
@@ -48,7 +55,11 @@ public class dCustom implements Die {
     public void roll(){
         this.value = ThreadLocalRandom.current().nextInt(min, max + 1)*multiplier;
     }
+    public String getName(){
+        return name;
+    }
     public String toString(){
         return name + ": " + getValue();
     }
+    
 }
