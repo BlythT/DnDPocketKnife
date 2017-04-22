@@ -59,7 +59,7 @@ public class dCustom implements Die {
         return name;
     }
     public String toString(){
-        return name + ": " + getValue();
+        return name + ": " +  + getValue();
     }
     
 }
